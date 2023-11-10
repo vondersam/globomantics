@@ -1,9 +1,7 @@
-import Banner from "./banner"
+import Banner from './banner';
 
 const App = () => {
-  return (
-    <Banner />
-  )
+  return <Banner />;
 };
 
 export default App;
