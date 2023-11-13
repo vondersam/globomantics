@@ -1,20 +1,35 @@
 import HouseRow from './houseRow';
+import { useState } from 'react';
+
+const housesArray = [
+  {
+    id: '1',
+    address: '12 Valley of Kings, Geneva',
+    country: 'Switzerland',
+    price: 900000
+  },
+  {
+    id: '2',
+    address: '89 Road of Forks, Bern',
+    country: 'Switzerland',
+    price: 500000
+  }
+];
 
 const HouseList = () => {
-  const houses = [
-    {
-      id: '1',
-      address: '12 Valley of Kings, Geneva',
-      country: 'Switzerland',
-      price: 900000
-    },
-    {
-      id: '2',
-      address: '89 Road of Forks, Bern',
-      country: 'Switzerland',
-      price: 500000
-    }
-  ];
+  const [houses, setHouses] = useState(housesArray);
+
+  const addHouse = () => {
+    setHouses([
+      ...houses,
+      {
+        id: '3',
+        address: '76 Road of Knives, Bern',
+        country: 'Switzerland',
+        price: 1500000
+      }
+    ]);
+  };
   return (
     <>
       <div className="row mb-2">
@@ -24,9 +39,11 @@ const HouseList = () => {
       </div>
       <table className="table table-hover">
         <thead>
-          <th>Address</th>
-          <th>Country</th>
-          <th>Asking price</th>
+          <tr>
+            <th>Address</th>
+            <th>Country</th>
+            <th>Asking price</th>
+          </tr>
         </thead>
         <tbody>
           {houses.map((house) => (
@@ -34,6 +51,9 @@ const HouseList = () => {
           ))}
         </tbody>
       </table>
+      <button className="btn btn-primary" onClick={addHouse}>
+        Add
+      </button>
     </>
   );
 };
