@@ -1,12 +1,10 @@
-import Image from 'next/image';
-
-const Banner = () => {
+const Banner = ({ children }) => {
   return (
-    <header>
-      <div>
-        <Image src="/./GloboLogo.png" alt="logo" width={100} height={100} />
+    <header className="row mb-4">
+      <div className="col-5">
+        <img src="/./GloboLogo.png" alt="logo" className="logo" />
       </div>
-      <div>Providing houses all over the world</div>
+      <div className="col-7 mt-5">{children}</div>
     </header>
   );
 };
