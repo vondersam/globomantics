@@ -1,16 +1,8 @@
 import HouseRow from './houseRow';
-import { useState, useEffect } from 'react';
+import useHouses from '../hooks/useHouses';
 
-const HouseList = () => {
-  const [houses, setHouses] = useState([]);
-  useEffect(() => {
-    const fetchHouses = async () => {
-      const response = await fetch('/api/houses');
-      const houses = await response.json();
-      setHouses(houses);
-    };
-    fetchHouses();
-  }, []);
+const HouseList = ({ selectHouse }) => {
+  const { houses, setHouses } = useHouses();
   const addHouse = () => {
     setHouses([
       ...houses,
@@ -39,7 +31,7 @@ const HouseList = () => {
         </thead>
         <tbody>
           {houses.map((house) => (
-            <HouseRow key={house.id} house={house} />
+            <HouseRow key={house.id} house={house} selectHouse={selectHouse} />
           ))}
         </tbody>
       </table>
