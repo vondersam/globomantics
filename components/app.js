@@ -1,7 +1,7 @@
 import Banner from './banner';
 import { useCallback, useState, createContext } from 'react';
 import navValues from '@/helpers/navValues';
-import ComponentPicker from './ComponentPicker';
+import ComponentPicker from './componentPicker';
 
 const navigationContext = createContext(navValues.home);
 
