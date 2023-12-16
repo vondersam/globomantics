@@ -10,7 +10,7 @@ const ComponentPicker = ({ currentNavLocation }) => {
       return <House />;
     default:
       return (
-        <h3>No component for navigation value {currentNavLocation} found</h3>
+        <h3>No component for navigation value * {currentNavLocation} * found</h3>
       );
   }
 };
