@@ -1,25 +1,27 @@
 import Banner from './banner';
-import HouseList from './houseList';
-import House from './house';
-import { useState } from 'react';
+import { useCallback, useState, createContext } from 'react';
+import navValues from '@/helpers/navValues';
+import ComponentPicker from './ComponentPicker';
+
+const navigationContext = createContext(navValues.home);
 
 const App = () => {
-  const headerText = 'Providing houses all over the world';
-  const [selectedHouse, setSelectedHouse] = useState();
+  const navigate = useCallback(
+    (navTo) => setNav({ curent: navTo, navigate }),
+    []
+  );
 
-  const setSelectedHouseWrapper = (house) => {
-    setSelectedHouse(house);
-  };
+  const [nav, setNav] = useState({ current: navValues.home, navigate });
+
   return (
-    <>
-      <Banner>{headerText}</Banner>
-      {selectedHouse ? (
-        <House house={selectedHouse} />
-      ) : (
-        <HouseList selectHouse={setSelectedHouseWrapper} />
-      )}
-    </>
+    <navigationContext.Provider value={nav}>
+      <Banner>
+        <div>Providing houses all over the world</div>
+      </Banner>
+      <ComponentPicker currentNavLocation={nav.current} />
+    </navigationContext.Provider>
   );
 };
 
+export { navigationContext };
 export default App;
